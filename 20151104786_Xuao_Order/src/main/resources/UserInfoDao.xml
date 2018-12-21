@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zs.LoginDemo.dao.IUserInfoDao" >
+    <resultMap id="userRM" type="com.zs.LoginDemo.model.UserInfo">
+        <!--主键-->
+        <id property="userid" column="userid" jdbcType="SMALLINT"></id>
+        <!--一般属性-->
+        <result property="username" column="username" jdbcType="VARCHAR"></result>
+        <result property="password" column="password" jdbcType="VARCHAR"></result>
+        <result property="usermoney" column="usermoney" jdbcType="VARCHAR"></result>
+        <result property="useraddress" column="useradss" jdbcType="VARCHAR"></result>
+         <result property="userphone" column="userphone" jdbcType="VARCHAR"></result>
+    </resultMap>
+    
+    <!--查询一个用户-->
+    <select id="checkuser" resultMap="userRM">
+        select * from user where username=#{username} and password = #{password}
+    </select>
+   
+    <!--根据用户名或性别或年龄模糊查询多个用户-->
+    <select id="selectUsersByUsernameOrGenderOrAge" resultMap="userRM" >
+        select * from user
+	    <where>
+	        <if test="username != null and username != ''">
+	          	username LIKE "%"#{username}"%"
+	        </if>
+	        <if test="gender != null and gender != ''" >
+	            AND password LIKE #{gender}
+	        </if>
+	        <if test="age != null and age != ''">
+	            AND age = #{age}
+	        </if>
+        </where>
+    </select>
+    
+</mapper>

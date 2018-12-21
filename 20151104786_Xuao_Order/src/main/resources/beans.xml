@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+
+        http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+        http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx-4.3.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--1.加载用于数据库配置的属性文件-->
+    <context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
+
+    <!--2.包扫描：dao,service-->
+    <context:component-scan 
+            base-package="com.zs.LoginDemo.dao,com.zs.LoginDemo.controller,com.zs.LoginDemo.service,com.zs.LoginDemo.model"></context:component-scan>
+    <!--配置扫描mapper-->
+    <bean class ="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.zs.LoginDemo.dao"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+    <!--3.加载dataSource数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"></property>
+        <property name="jdbcUrl" value="${jdbc.url}"></property>
+        <property name="user" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="maxPoolSize" value="${c3p0.pool.maxPoolSize}"></property>
+        <property name="minPoolSize" value="${c3p0.pool.minPoolSize}"></property>
+        <property name="initialPoolSize" value="${c3p0.pool.initialPoolSize}"></property>
+        <property name="acquireIncrement" value="${c3p0.pool.acquireIncrement}"></property>
+    </bean>
+    <!--4.SessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="classpath:SqlMapConfig.xml"></property>
+        <property name="mapperLocations" value="classpath*:UserInfoDao.xml"></property>
+    </bean>
+
+    <!--事务通知-->
+    <!--<tx:advice id="txAdivce" transaction-manager="transactionManager">-->
+        <!--<tx:attributes>-->
+            <!--<tx:method name="insert*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="update*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="delete*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="save*" propagation="REQUIRED"/>-->
+            <!--<tx:method name="find*" read-only="false"/>-->
+            <!--<tx:method name="get*" read-only="false"/>-->
+            <!--<tx:method name="view*" read-only="false"/>-->
+        <!--</tx:attributes>-->
+    <!--</tx:advice>-->
+    <!--<aop:config>-->
+        <!--<aop:pointcut expression="execution(* com.MyFristSSM.service.*.*( ..))" id="txPointcut" ></aop:pointcut>-->
+        <!--<aop:advisor advice-ref="txAdivce" pointcut-ref="txPointcut"></aop:advisor>-->
+    <!--</aop:config>-->
+    
+    <!--spring事务管理-->
+    <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+</beans> 
