@@ -1,5 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+   
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +20,7 @@
     <!--头部区域-->
     <div class="header">
         <div class="container logo">
-            <img src="images/header.png" alt="logo">
+            <img src="image/header.png" alt="logo">
         </div>
         <div class="container">
             <ul class="main-nav clearfix">   
@@ -71,17 +75,17 @@
     				<div class="module">
 	    				<div class="module-head clearfix">
 	    					<div class="head-item  clearfix">
-	    						<div class="icon"><img src="images/dd.png"/></div>
+	    						<div class="icon"><img src="image/dd.png"/></div>
 	    						<h2 class="title"><a href="#">活动栏目汇总</a></h2>
 	    					</div>
 	    					<div class="head-item  clearfix">
-	    						<div class="icon"><img src="images/dd1.png"/></div>
+	    						<div class="icon"><img src="image/dd1.png"/></div>
 	    						<h2 class="title"><a href="#">公告信息</a></h2>
 	    					</div>
 	    				</div>
 	    				<div class="module-body clearfix">
 	    					<div class="img-flocus">
-	    						<img alt="slider" title="slider" src="images/slider.jpg">
+	    						<img alt="slider" title="slider" src="image/slider.jpg">
 	    					</div>
 	    					<div class="msg-area">
 	    						<ul class="data-list">
@@ -161,22 +165,22 @@
     				<ul class="column-list">
     					<li class="column-list-item">
     						<a href="#">
-    							<img alt="" src="images/jigouzhineng.png">
+    							<img alt="" src="image/jigouzhineng.png">
     						</a>
     					</li>
     					<li class="column-list-item">
     						<a href="#">
-    							<img alt="" src="images/zhongxinfengcai.png">
+    							<img alt="" src="image/zhongxinfengcai.png">
     						</a>
     					</li>
     					<li class="column-list-item">
     						<a href="#">
-    							<img alt="" src="images/tuanduixinyu.png">
+    							<img alt="" src="image/tuanduixinyu.png">
     						</a>
     					</li>
     				</ul>
     			</div>
-    			<a href="#" class="company-plat"><img alt="" src="images/qishiyebanshidanwei.png"></a>
+    			<a href="#" class="company-plat"><img alt="" src="image/qishiyebanshidanwei.png"></a>
     		</div>
     	</div>    	
     	<div class="container">
